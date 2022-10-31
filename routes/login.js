@@ -1,0 +1,11 @@
+const express = require("express");
+const router = express.Router();
+const login = require("../controllers/login");
+const { userAuth } = require("../middlewares/checkToken");
+router.post("/login", login.login);
+router.post("/signup", login.signUp);
+router.get("/profile", userAuth, login.getProfile);
+router.post("/signup/verifyOTP", login.signupVerifyOTP);
+router.post("/login/verifyOTP", login.loginVerifyOTP);
+router.put("/profile", userAuth, login.updateProfile);
+module.exports = router;
